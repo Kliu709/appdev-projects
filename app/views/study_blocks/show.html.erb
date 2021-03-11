@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Study block #<%= @the_study_block.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/study_blocks">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_study_block/<%= @the_study_block.id %>">
+          Delete study block
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Start time
+      </dt>
+      <dd>
+        <%= @the_study_block.start_time %>
+      </dd>
+
+      <dt>
+        End time
+      </dt>
+      <dd>
+        <%= @the_study_block.end_time %>
+      </dd>
+
+      <dt>
+        Day of week
+      </dt>
+      <dd>
+        <%= @the_study_block.day_of_week %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_study_block.user_id %>
+      </dd>
+
+      <dt>
+        Effort
+      </dt>
+      <dd>
+        <%= @the_study_block.effort %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_study_block.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_study_block.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit study block
+    </h2>
+
+    <form action="/modify_study_block/<%= @the_study_block.id %>"  method="post" >
+      <div>
+        <label for="start_time_box">
+          Start time
+        </label>
+
+        <input type="time" id="start_time_box" name="query_start_time" value="<%= @the_study_block.start_time %>">
+      </div>
+
+      <div>
+        <label for="end_time_box">
+          End time
+        </label>
+
+        <input type="time" id="end_time_box" name="query_end_time" value="<%= @the_study_block.end_time %>">
+      </div>
+
+      <div>
+        <label for="day_of_week_box">
+          Day of week
+        </label>
+
+        <input type="text" id="day_of_week_box" name="query_day_of_week" value="<%= @the_study_block.day_of_week %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_study_block.user_id %>">
+      </div>
+
+      <div>
+        <label for="effort_box">
+          Effort
+        </label>
+
+        <input type="text" id="effort_box" name="query_effort" value="<%= @the_study_block.effort %>">
+      </div>
+
+      <button>
+        Update study block
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
