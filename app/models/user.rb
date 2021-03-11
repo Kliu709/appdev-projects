@@ -12,5 +12,10 @@
 class User < ApplicationRecord
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true
+  validates(:username, { :presence => true })
+  validates(:username, { :uniqueness => { :case_sensitive => true } })
   has_secure_password
+  has_many(:study_blocks, { :class_name => "StudyBlock", :foreign_key => "user_id", :dependent => :destroy })
+  has_many(:sent_follow_requests, { :class_name => "Follower", :foreign_key => "sender_id", :dependent => :destroy })
+  has_many(:received_follow_requests, { :class_name => "Follower", :foreign_key => "recipient_id", :dependent => :destroy })
 end

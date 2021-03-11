@@ -12,4 +12,9 @@
 #  user_id     :integer
 #
 class StudyBlock < ApplicationRecord
+  validates(:start_time, { :presence => true })
+  validates(:end_time, { :presence => true })
+  validates(:day_of_week, { :presence => true })
+  belongs_to(:user, { :required => false, :class_name => "User", :foreign_key => "user_id" })
+
 end
