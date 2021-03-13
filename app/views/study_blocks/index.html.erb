@@ -1,8 +1,65 @@
 <div>
   <div>
     <h1>
-     Hi <%=@current_user.username%>, this is your calendar for this week
+     <%=@current_user.username%>'s Profile
     </h1>
+  </div>
+</div>
+
+<hr>
+<h2> <%= @current_user.username%>'s Calendar</h2>
+<div>
+  <div>
+    <table>
+      <tr>
+
+        <th>
+          Start time
+        </th>
+
+        <th>
+          End time
+        </th>
+
+        <th>
+          Day of week
+        </th>
+
+        <th>
+          Effort Level
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_study_blocks.each do |a_study_block| %>
+      <tr>
+
+        <td>
+          <%= a_study_block.start_time.strftime("%R %p") %>
+        </td>
+
+        <td>
+          <%= a_study_block.end_time.strftime("%R %p") %>
+        </td>
+
+        <td>
+          <%= a_study_block.day_of_week %>
+        </td>
+
+        <td>
+          <%= a_study_block.effort %>
+        </td>
+
+        <td>
+          <a href="/study_blocks/<%= a_study_block.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
 
@@ -59,91 +116,6 @@
         Create study block
       </button>
     </form>
-  </div>
-</div>
-
-<hr>
-<div>
-  <div>
-    <table>
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Start time
-        </th>
-
-        <th>
-          End time
-        </th>
-
-        <th>
-          Day of week
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Effort
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_study_blocks.each do |a_study_block| %>
-      <tr>
-        <td>
-          <%= a_study_block.id %>
-        </td>
-
-        <td>
-          <%= a_study_block.start_time %>
-        </td>
-
-        <td>
-          <%= a_study_block.end_time %>
-        </td>
-
-        <td>
-          <%= a_study_block.day_of_week %>
-        </td>
-
-        <td>
-          <%= a_study_block.user_id %>
-        </td>
-
-        <td>
-          <%= a_study_block.effort %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_study_block.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_study_block.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/study_blocks/<%= a_study_block.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
   </div>
 </div>
 
