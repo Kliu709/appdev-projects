@@ -22,7 +22,7 @@ class StudyBlocksController < ApplicationController
     the_study_block.start_time = params.fetch("query_start_time")
     the_study_block.end_time = params.fetch("query_end_time")
     the_study_block.day_of_week = params.fetch("query_day_of_week")
-    the_study_block.user_id = params.fetch("query_user_id")
+    the_study_block.user_id = @current_user.id
     the_study_block.effort = params.fetch("query_effort")
 
     if the_study_block.valid?

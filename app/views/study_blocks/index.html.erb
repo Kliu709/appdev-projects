@@ -96,13 +96,7 @@
         <input type="text" id="day_of_week_box" name="query_day_of_week">
       </div>
 
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
+        <input type="hidden" name="query_user_id" value="<%@current_user.id%>">
 
       <div>
         <label for="effort_box">
