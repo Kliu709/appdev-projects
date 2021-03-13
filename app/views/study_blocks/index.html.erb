@@ -12,6 +12,14 @@
   <div>
     <table>
       <tr>
+        <th>
+          Day of week
+        </th>
+
+
+        <th>
+          Effort Level
+        </th>
 
         <th>
           Start time
@@ -22,19 +30,20 @@
         </th>
 
         <th>
-          Day of week
-        </th>
-
-        <th>
-          Effort Level
-        </th>
-
-        <th>
         </th>
       </tr>
 
       <% @list_of_study_blocks.each do |a_study_block| %>
       <tr>
+
+
+        <td>
+          <%= a_study_block.day_of_week %>
+        </td>
+
+        <td>
+          <%= a_study_block.effort %>
+        </td>
 
         <td>
           <%= a_study_block.start_time.strftime("%R %p") %>
@@ -44,13 +53,7 @@
           <%= a_study_block.end_time.strftime("%R %p") %>
         </td>
 
-        <td>
-          <%= a_study_block.day_of_week %>
-        </td>
-
-        <td>
-          <%= a_study_block.effort %>
-        </td>
+       
 
         <td>
           <a href="/study_blocks/<%= a_study_block.id %>">
@@ -102,8 +105,13 @@
         <label for="effort_box">
           Effort
         </label>
-
-        <input type="text" id="effort_box" name="query_effort">
+        <select id="effort_box" name="query_effort">
+          <option value="0">0 - Not Studying (I don't really want to study I just want to talk!)</option>
+          <option value="1">1 - Light Studying (I want to study a little bit and want to talk more) </option>
+          <option value="2">2 - Moderate Studying (I want study a decent amount and want to talk occasionally)</option>
+          <option value="3">3 - Hard Studying (I want to study a lot and do not want to talk much)</option>
+        </select >
+      
       </div>
 
       <button>
