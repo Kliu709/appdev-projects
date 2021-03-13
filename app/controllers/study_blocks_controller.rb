@@ -1,6 +1,6 @@
 class StudyBlocksController < ApplicationController
   def index
-    matching_study_blocks = StudyBlock.all
+    matching_study_blocks = @current_user.study_blocks
 
     @list_of_study_blocks = matching_study_blocks.order({ :created_at => :desc })
 
