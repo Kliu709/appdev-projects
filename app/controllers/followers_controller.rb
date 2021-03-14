@@ -19,14 +19,16 @@ class FollowersController < ApplicationController
 
   def create
     the_follower = Follower.new
-    the_follower.sender_id = params.fetch("query_sender_id")
-    the_follower.recipient_id = params.fetch("query_recipient_id")
+    the_follower.sender_id = @current_user.id 
+    the_recipient_username = params.fetch("query_recipient_name")
+    the_follower.recipient_id = User.where({:username => the_recipient_username}).first.id
+    the_follower.status = false 
 
     if the_follower.valid?
       the_follower.save
-      redirect_to("/followers", { :notice => "Follower created successfully." })
+      redirect_to("study_blocks/index.html.erb", { :notice => "Follower created successfully." })
     else
-      redirect_to("/followers", { :notice => "Follower failed to create successfully." })
+      redirect_to("study_blocks/index.html.erb", { :notice => "Follower failed to create successfully." })
     end
   end
 
