@@ -16,17 +16,16 @@
           Day of week
         </th>
 
-
-        <th>
-          Effort Level
-        </th>
-
         <th>
           Start time
         </th>
 
         <th>
           End time
+        </th>
+
+        <th>
+          Effort Level
         </th>
 
         <th>
@@ -43,16 +42,17 @@
         </td>
 
         <td>
-          <%= a_study_block.effort %>
-        </td>
-
-        <td>
           <%= a_study_block.st_in_words %>
         </td>
 
         <td>
           <%= a_study_block.et_in_words %>
         </td>
+
+        <td>
+          <%= a_study_block.effort %>
+        </td>
+
 
         <td>
           <%= a_study_block.description%>
@@ -82,7 +82,7 @@
     <form action="/insert_study_block" method="post">
       <div>
         <label for="start_time_box">
-          Start time
+          Start time (CST)
         </label>
 
         <input type="time" id="start_time_box" name="query_start_time">
@@ -90,7 +90,7 @@
 
       <div>
         <label for="end_time_box">
-          End time
+          End time (CST)
         </label>
 
         <input type="time" id="end_time_box" name="query_end_time">
@@ -117,6 +117,14 @@
           <option value="3">3 - Hard Studying (I want to study a lot and do not want to talk much)</option>
         </select >
       
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
       </div>
 
       <button>
@@ -151,6 +159,13 @@
           End time 
         </th >
 
+        <th>
+          Effort Level
+        </th>
+
+        <th>
+          Description
+        </th>
       </tr>
       <%  #@list_of_matching_study_blocks 
           #Have a list of all my friends 
@@ -174,6 +189,14 @@
 
         <td>
           <%= a_study_block.et_in_words%>
+        </td>
+
+        <td>
+          <%= a_study_block.effort%>
+        </td>
+
+        <td>
+          <%= a_study_block.description%>
         </td>
 
       </tr>

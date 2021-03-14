@@ -49,6 +49,7 @@ class StudyBlocksController < ApplicationController
     the_study_block.day_of_week = params.fetch("query_day_of_week")
     the_study_block.user_id = @current_user.id
     the_study_block.effort = params.fetch("query_effort")
+    the_study_block.description = params.fetch("query_description")
 
     if the_study_block.valid?
       the_study_block.save
