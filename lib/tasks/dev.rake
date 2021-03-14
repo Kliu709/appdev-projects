@@ -20,26 +20,27 @@ task({ :sample_data => :environment}) do
   p "Added #{User.count} Users"
 
 
-  days = {0 => "Sunday",
-    1 => "Monday", 
-    2 => "Tuesday",
-    3 => "Wednesday",
-    4 => "Thursday",
-    5 => "Friday",
-    6 => "Saturday"}
-  start_time = Time.now 
-  end_time = Time.now + 30*60 #30 minutes later 
-  dow = days[end_time.wday]
+  days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+  now_time = Time.now
+  times = []
+  7.times do 
+    i = 1 
+    times.push(now_time + 600 * i)
+    i = i + 1 
+  end 
+
   effort = [0, 1, 2, 3]
 
-  
-  study_block = StudyBlock.new
-  study_block.start_time = start_time
-  study_block.end_time = end_time
-  study_block.day_of_week = dow
-  study_block.user_id = User.all.sample.id
-  study_block.effort = effort.sample
-  study_block.save
+  7.times do 
+    study_block = StudyBlock.new
+    study_block.start_time = times.sample
+    study_block.end_time = times.sample
+    study_block.day_of_week = days.sample
+    study_block.user_id = User.all.sample.id
+    study_block.effort = effort.sample
+    study_block.save
+  end 
   p "Added #{StudyBlock.count}  Study_block"
 
   

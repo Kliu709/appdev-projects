@@ -3,6 +3,7 @@
 # Table name: followers
 #
 #  id           :integer          not null, primary key
+#  status       :boolean
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  recipient_id :integer

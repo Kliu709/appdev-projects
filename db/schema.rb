@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_144444) do
+ActiveRecord::Schema.define(version: 2021_03_14_023013) do
 
   create_table "followers", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "status"
   end
 
   create_table "study_blocks", force: :cascade do |t|
