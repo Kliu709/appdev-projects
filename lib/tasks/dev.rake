@@ -24,8 +24,8 @@ task({ :sample_data => :environment}) do
 
   now_time = Time.now
   times = []
-  7.times do 
-    i = 1 
+  i = 1 
+  while i < 8 do 
     times.push(now_time + 600 * i)
     i = i + 1 
   end 
@@ -41,7 +41,18 @@ task({ :sample_data => :environment}) do
     study_block.effort = effort.sample
     study_block.save
   end 
-  p "Added #{StudyBlock.count}  Study_block"
+  p "Added #{StudyBlock.count} Study blocks"
 
+users = User.all
+bool = [false, true]
+10.times do 
+  fr = Follower.new
+  fr.status = bool.sample
+  fr.sender_id = users.sample.id 
+  fr.recipient_id = users.sample.id 
+  fr.save
+end
+
+p "Added #{Follower.count} FollowRequests"
   
 end
