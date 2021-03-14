@@ -8,10 +8,34 @@
 <hr>
   <div>
     <div>
-      <h2>
-        My Followers Request (all follower requests where the current user is the recipient_id)
-      </h2>
+      <h4>
+        Pending Follow requests(all follower requests where the current user is the recipient_id)
+      </h4>
     </div>
+
+    <ul>
+      <% @list_of_follow_requests.each do |a_follower| %>
+      <li>
+        <%= User.where({:id => a_follower.sender_id}).first.username%>
+        <form action="/modify_follower/<%=a_follower.sender_id%>" method="post">
+              <input name="query_status" value="accepted" type="hidden">
+
+              <button>
+                Accept
+              </button>
+            </form>
+
+            <form action="/modify_follower/<%=a_follower.sender_id%>" method="post">
+              <input name="query_status" value="rejected" type="hidden">
+            
+              <button>
+                Reject
+              </button>
+        </form>
+      </li>
+      <%end %>
+    </ul>
+    <!--
     <table>
       <tr>
         <th>
@@ -23,7 +47,7 @@
         </th>
       </tr>
 
-      <% @list_of_followers.each do |a_follower| %>
+      <% @list_of_follow_requests.each do |a_follower| %>
       <tr>
 
 
@@ -34,10 +58,45 @@
         <td>
           <% status = a_follower.status%>
           <%if status == true %>
-            Accepted
+            true
           <%else %>
-            Rejected
+            false
           <%end %>
+        </td>
+
+      </tr>
+      <% end %>
+    </table>
+    --> 
+  </div>
+
+<hr>
+  <div>
+    <div>
+      <h2>
+        My friends (only people who you have followed + have accepted your follow request show up here)
+      </h2>
+    </div>
+    <table>
+      <tr>
+        <th>
+          Friend Username
+        </th>
+
+      </tr>
+
+      <% @list_of_friends.each do |a_friend| %>
+      <tr>
+
+
+        <td>
+          <%= User.where({:id => a_friend.sender_id}).first.username%>
+        </td>
+
+        <td>
+          <a href="/delete_follower/<%= a_friend.id %>">
+            Delete this friend 
+          </a>
         </td>
 
       </tr>
@@ -45,9 +104,8 @@
     </table>
 
   </div>
-<hr>
 
-<!--
+
   <div>
     <h3> Add a friend! </h3>
     <form action="/insert_follower" method="post">
@@ -58,4 +116,4 @@
         <input type="text" id="follower_box" name="query_recipient_name">
     </form>
   </div>
-  --> 
+<hr>

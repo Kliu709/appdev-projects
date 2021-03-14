@@ -11,10 +11,14 @@ class FollowersController < ApplicationController
     the_id = params.fetch("path_id")
 
     @the_user = @current_user
-    matching_followers = Follower.where({:recipient_id => @the_user.id})
+    matching_followers = @current_user.received_follow_requests.where({ :status => false})
     #matching_followers = Follower.where({ :id => the_id })
 
-    @list_of_followers = matching_followers
+    @list_of_follow_requests = matching_followers
+
+    matching_friends = @current_user.received_follow_requests.where({ :status => true})
+
+    @list_of_friends = matching_friends.order({ :created_at => :desc })
     render({ :template => "followers/show.html.erb" })
   end
 
@@ -40,10 +44,11 @@ class FollowersController < ApplicationController
 
   def update
     the_id = params.fetch("path_id")
-    the_follower = Follower.where({ :id => the_id }).at(0)
-
-    the_follower.sender_id = params.fetch("query_sender_id")
-    the_follower.recipient_id = params.fetch("query_recipient_id")
+    the_follower = Follower.where({ :sender_id => the_id }).at(0)
+    status = params.fetch("query_status")
+    #the_follower.sender_id = params.fetch("query_sender_id")
+    #the_follower.recipient_id = @current_user.id
+    the_follower.status = status
 
     if the_follower.valid?
       the_follower.save
