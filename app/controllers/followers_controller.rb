@@ -11,10 +11,10 @@ class FollowersController < ApplicationController
     the_id = params.fetch("path_id")
 
     @the_user = @current_user
-    matching_followers = Follower.where({:sender_id => @the_user.id})
+    matching_followers = Follower.where({:recipient_id => @the_user.id})
     #matching_followers = Follower.where({ :id => the_id })
 
-    @list_of_followers = matching_followers.at(0)
+    @list_of_followers = matching_followers
     render({ :template => "followers/show.html.erb" })
   end
 

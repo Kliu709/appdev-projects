@@ -4,3 +4,58 @@
      <%= @the_user.username %> Follower details
     </h1>
 
+
+<hr>
+  <div>
+    <div>
+      <h2>
+        My Followers Request (all follower requests where the current user is the recipient_id)
+      </h2>
+    </div>
+    <table>
+      <tr>
+        <th>
+          Username
+        </th>
+
+        <th>
+          Status
+        </th>
+      </tr>
+
+      <% @list_of_followers.each do |a_follower| %>
+      <tr>
+
+
+        <td>
+          <%= User.where({:id => a_follower.sender_id}).first.username%>
+        </td>
+
+        <td>
+          <% status = a_follower.status%>
+          <%if status == true %>
+            Accepted
+          <%else %>
+            Rejected
+          <%end %>
+        </td>
+
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+<hr>
+
+<!--
+  <div>
+    <h3> Add a friend! </h3>
+    <form action="/insert_follower" method="post">
+        <label for="follower_box">
+          Friend Username: 
+        </label>
+
+        <input type="text" id="follower_box" name="query_recipient_name">
+    </form>
+  </div>
+  --> 
