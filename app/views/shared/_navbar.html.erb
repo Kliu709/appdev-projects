@@ -21,9 +21,11 @@
             <a href="/followers" class="dropdown-item">
               Followers
             </a>
+            <% if @current_user != nil%>
             <a href="/followers/<%=@current_user.id%>"  class="dropdown-item">
               Your Followers
             </a>
+            <%end%>
             <a href="/user_sign_in" class="dropdown-item">
               Sign-up
             </a>

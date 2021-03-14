@@ -4,7 +4,7 @@ task({ :sample_data => :environment}) do
   User.destroy_all
   Follower.destroy_all
   StudyBlock.destroy_all
-
+=begin
   3.times do 
     user = User.new
     user.username = Faker::Name.first_name 
@@ -12,11 +12,18 @@ task({ :sample_data => :environment}) do
     user.password = "password"
     user.save 
   end 
-  user = User.new
-  user.username = "alice"
-  user.email = "alice@example.com"
-  user.password = "password"
-  user.save 
+=end 
+  user1 = User.new
+  user1.username = "alice"
+  user1.email = "alice@example.com"
+  user1.password = "password"
+  user1.save 
+
+  user2 = User.new
+  user2.username = "bob"
+  user2.email = "bob@example.com"
+  user2.password = "password"
+  user2.save 
   p "Added #{User.count} Users"
 
 
@@ -32,7 +39,25 @@ task({ :sample_data => :environment}) do
 
   effort = [0, 1, 2, 3]
   descriptions = ["FINALS WEEK GG", "Studying math!", "come hang out with me :)", "I have a pset due at midnight don't talk but sit with me"]
-  
+  study_block = StudyBlock.new
+  study_block.start_time = Time.new(2000, 1, 1, 21)
+  study_block.end_time = Time.new(2000, 1, 1, 23)
+  study_block.day_of_week = "Saturday"
+  study_block.user_id = User.all.first.id
+  study_block.effort = effort.sample
+  study_block.description = descriptions.sample
+  study_block.save
+
+  study_block = StudyBlock.new
+  study_block.start_time = Time.new(2000, 1, 1, 21)
+  study_block.end_time = Time.new(2000, 1, 1, 23)
+  study_block.day_of_week = "Saturday"
+  study_block.user_id = User.all.at(1).id
+  study_block.effort = effort.sample
+  study_block.description = descriptions.sample
+  study_block.save
+
+=begin
   7.times do 
     study_block = StudyBlock.new
     study_block.start_time = times.sample
@@ -43,8 +68,22 @@ task({ :sample_data => :environment}) do
     study_block.description = descriptions.sample
     study_block.save
   end 
+=end 
   p "Added #{StudyBlock.count} Study blocks"
 
+
+  fr = Follower.new
+  fr.status = true
+  fr.sender_id = User.all.first.id
+  fr.recipient_id = User.all.at(1).id
+  fr.save
+
+  fr = Follower.new
+  fr.status = true
+  fr.sender_id = User.all.at(1).id
+  fr.recipient_id = User.all.first.id
+  fr.save
+=begin
 users = User.all
 bool = [false, true]
 10.times do 
@@ -54,7 +93,7 @@ bool = [false, true]
   fr.recipient_id = users.sample.id 
   fr.save
 end
-
+=end 
 p "Added #{Follower.count} FollowRequests"
   
 end

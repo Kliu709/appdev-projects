@@ -47,11 +47,11 @@
         </td>
 
         <td>
-          <%= a_study_block.start_time.strftime("%R %p") %>
+          <%= a_study_block.st_in_words %>
         </td>
 
         <td>
-          <%= a_study_block.end_time.strftime("%R %p") %>
+          <%= a_study_block.et_in_words %>
         </td>
 
         <td>
@@ -127,6 +127,61 @@
 </div>
 
 <hr>
+<div>
+    <div>
+      <h2>
+        Matching times with friends 
+      </h2>
+    </div>
+    <table>
+      <tr>
+        <th>
+          Friend
+        </th>
+
+        <th>
+          Day of the week
+        </th>
+        
+        <th>
+          Start time
+        </th>
+
+        <th>
+          End time 
+        </th >
+
+      </tr>
+      <%  #@list_of_matching_study_blocks 
+          #Have a list of all my friends 
+          #for each friends, search their study blocks and return the ones that have a matching time to me 
+      %>
+      <% @matching_study_blocks.each do |a_study_block| %>
+      <tr>
+
+
+        <td>
+          <%= User.where({:id => a_study_block.user_id}).first.username%>
+        </td>
+
+        <td>
+          <%= a_study_block.day_of_week%>
+        </td>
+
+        <td>
+          <%= a_study_block.st_in_words%>
+        </td>
+
+        <td>
+          <%= a_study_block.et_in_words%>
+        </td>
+
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+<!-- 
   <div>
     <div>
       <h2>
@@ -165,3 +220,4 @@
         <input type="text" id="follower_box" name="query_recipient_name">
     </form>
   </div>
+--> 

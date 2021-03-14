@@ -18,4 +18,10 @@ class StudyBlock < ApplicationRecord
   validates(:day_of_week, { :presence => true })
   belongs_to(:user, { :required => false, :class_name => "User", :foreign_key => "user_id" })
 
+  def st_in_words 
+    self.start_time.strftime("%R %p")
+  end 
+  def et_in_words 
+    self.end_time.strftime("%R %p")
+  end 
 end

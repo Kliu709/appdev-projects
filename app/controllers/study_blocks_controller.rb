@@ -1,12 +1,33 @@
 class StudyBlocksController < ApplicationController
   def index
-    matching_study_blocks = @current_user.study_blocks
+    my_study_blocks = @current_user.study_blocks
 
-    @list_of_study_blocks = matching_study_blocks.order({ :created_at => :desc })
+    @list_of_study_blocks = my_study_blocks.order({ :created_at => :desc })
 
+
+    
     matching_friends = @current_user.received_follow_requests.where({ :status => true})
 
     @list_of_friends = matching_friends.order({ :created_at => :desc })
+
+    #@list_of_matching_study_blocks 
+    #Have a list of all my friends 
+    #for each friends, search their study blocks and return the ones that have a matching time to me 
+    @list_of_friends.each do |a_friend|
+      friend_user = User.where({:id => a_friend.sender_id}).first
+      friend_study_blocks = friend_user.study_blocks
+      @matching_study_blocks = []
+      friend_study_blocks.each do |a_study_block|
+        start_time = a_study_block.start_time
+        end_time = a_study_block.end_time
+        dow = a_study_block.day_of_week
+          @list_of_study_blocks.each do |my_study_block|
+            if(start_time == my_study_block.start_time) and (end_time == my_study_block.end_time) and (dow == my_study_block.day_of_week)
+              @matching_study_blocks.push(a_study_block)
+            end 
+          end 
+      end 
+    end 
 
     render({ :template => "study_blocks/index.html.erb" })
   end
