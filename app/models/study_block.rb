@@ -4,6 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  day_of_week :string
+#  description :string
 #  effort      :string
 #  end_time    :time
 #  start_time  :time
