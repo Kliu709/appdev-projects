@@ -31,7 +31,7 @@ task({ :sample_data => :environment}) do
   end 
 
   effort = [0, 1, 2, 3]
-
+  descriptions = ["FINALS WEEK GG", "Studying math!", "come hang out with :)", "I have a pset due at midnight don't talk but sit with me"]
   7.times do 
     study_block = StudyBlock.new
     study_block.start_time = times.sample
@@ -39,6 +39,7 @@ task({ :sample_data => :environment}) do
     study_block.day_of_week = days.sample
     study_block.user_id = User.all.sample.id
     study_block.effort = effort.sample
+    study_block.description = descriptions.sample
     study_block.save
   end 
   p "Added #{StudyBlock.count} Study blocks"

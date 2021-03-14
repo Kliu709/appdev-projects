@@ -4,6 +4,10 @@ class StudyBlocksController < ApplicationController
 
     @list_of_study_blocks = matching_study_blocks.order({ :created_at => :desc })
 
+    matching_friends = @current_user.received_follow_requests.where({ :status => true})
+
+    @list_of_friends = matching_friends.order({ :created_at => :desc })
+
     render({ :template => "study_blocks/index.html.erb" })
   end
 

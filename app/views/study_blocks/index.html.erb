@@ -30,6 +30,7 @@
         </th>
 
         <th>
+          Description
         </th>
       </tr>
 
@@ -53,11 +54,15 @@
           <%= a_study_block.end_time.strftime("%R %p") %>
         </td>
 
+        <td>
+          <%= a_study_block.description%>
+        </td>
+
        
 
         <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
-            Delete this time 
+            Delete this study block 
           </a>
         </td>
       </tr>
@@ -122,3 +127,41 @@
 </div>
 
 <hr>
+  <div>
+    <div>
+      <h2>
+        My friends 
+      </h2>
+    </div>
+    <table>
+      <tr>
+        <th>
+          Friends (only people who you have followed + have accepted your follow request show up here)
+        </th>
+
+      </tr>
+
+      <% @list_of_friends.each do |a_friend| %>
+      <tr>
+
+
+        <td>
+          <%= User.where({:id => a_friend.sender_id}).first.username%>
+        </td>
+
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+<hr>
+  <div>
+    <h3> Add a friend! </h3>
+    <form action="/insert_follower" method="post">
+        <label for="follower_box">
+          Friend Username: 
+        </label>
+
+        <input type="text" id="follower_box" name="query_recipient_time">
+    </form>
+  </div>
