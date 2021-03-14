@@ -31,7 +31,8 @@ task({ :sample_data => :environment}) do
   end 
 
   effort = [0, 1, 2, 3]
-  descriptions = ["FINALS WEEK GG", "Studying math!", "come hang out with :)", "I have a pset due at midnight don't talk but sit with me"]
+  descriptions = ["FINALS WEEK GG", "Studying math!", "come hang out with me :)", "I have a pset due at midnight don't talk but sit with me"]
+  
   7.times do 
     study_block = StudyBlock.new
     study_block.start_time = times.sample
