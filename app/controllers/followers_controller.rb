@@ -10,10 +10,11 @@ class FollowersController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
-    matching_followers = Follower.where({ :id => the_id })
+    @the_user = @current_user
+    matching_followers = Follower.where({:sender_id => @the_user.id})
+    #matching_followers = Follower.where({ :id => the_id })
 
-    @the_follower = matching_followers.at(0)
-
+    @list_of_followers = matching_followers.at(0)
     render({ :template => "followers/show.html.erb" })
   end
 
@@ -23,8 +24,13 @@ class FollowersController < ApplicationController
     the_recipient_username = params.fetch("query_recipient_name")
     the_follower.recipient_id = User.where({:username => the_recipient_username}).first.id
     the_follower.status = false 
+    #duplicate = Follower.where({:sender_id => the_follower.sender_id, :recipient_id => the_follower.recipient_id}).first
 
-    if the_follower.valid?
+    #if (duplicate.sender_id == the_follower.sender_id) and (duplicate.recipient_id == the_follower.recipient_id)
+     # copy = true
+    #end 
+
+    if (the_follower.valid?) 
       the_follower.save
       redirect_to("study_blocks/index.html.erb", { :notice => "Follower created successfully." })
     else
