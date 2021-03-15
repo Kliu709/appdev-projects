@@ -68,13 +68,17 @@ class FollowersController < ApplicationController
   end
 
   def destroy
-    the_id = params.fetch("path_id")
-    the_follower = Follower.where({ :id=> the_id }).at(0)
-    desired_record = the_follower.recipient_id 
-    the_real_follower = Follower.where({:sender_id => desired_record}).first
+    friend_entry_id = params.fetch("path_id")
+    the_follower = Follower.where({ :id => friend_entry_id }).at(0) #find the entry where the friendship is stored
+    #desired_record = the_follower.recipient_id 
+    #the_real_follower = Follower.where({:sender_id => desired_record}).first
 
-    the_real_follower.destroy
+    the_follower.destroy
 
+    #if i have 2 friends, they share one follower record
+    #if one of the friends deletes a follower record, I should delete the record for both friends
+    #ex. if alice is the sender, and bob is the recipient
+    #alice deletes, then we look at the record check if alice is recipient or sender 
     redirect_to("/followers/#{@current_user.id}", { :notice => "Follower deleted successfully."} )
   end
 end
