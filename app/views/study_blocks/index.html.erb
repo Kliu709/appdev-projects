@@ -179,78 +179,74 @@
           #Have a list of all my friends 
           #for each friends, search their study blocks and return the ones that have a matching time to me 
       %>
-      <% if @matching_study_blocks != nil%>
-      <% @matching_study_blocks.each do |a_study_block| %>
-      <tr>
+      <% if @matching_study_blocks_received != nil%>
+      <% @matching_study_blocks_received.each do |a_study_block| %>
+         <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+          <tr>
 
 
-        <td>
-          <%= User.where({:id => a_study_block.user_id}).first.username%>
-        </td>
+            <td>
+              <%= User.where({:id => a_study_block.user_id}).first.username%>
+            </td>
 
-        <td>
-          <%= a_study_block.day_of_week%>
-        </td>
+            <td>
+              <%= a_study_block.day_of_week%>
+            </td>
 
-        <td>
-          <%= a_study_block.st_in_words%>
-        </td>
+            <td>
+              <%= a_study_block.st_in_words%>
+            </td>
 
-        <td>
-          <%= a_study_block.et_in_words%>
-        </td>
+            <td>
+              <%= a_study_block.et_in_words%>
+            </td>
 
-        <td>
-          <%= a_study_block.effort%>
-        </td>
+            <td>
+              <%= a_study_block.effort%>
+            </td>
 
-        <td>
-          <%= a_study_block.description%>
-        </td>
+            <td>
+              <%= a_study_block.description%>
+            </td>
 
-      </tr>
+          </tr>
+        <%end%>
+      <% end %>
+      <%end%>
+
+      <% if @matching_study_blocks_sent != nil%>
+      <% @matching_study_blocks_sent.each do |a_study_block| %>
+        <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+          <tr>
+            
+            <td>
+              <%= User.where({:id => a_study_block.user_id}).first.username%>
+            </td>
+
+            <td>
+              <%= a_study_block.day_of_week%>
+            </td>
+
+            <td>
+              <%= a_study_block.st_in_words%>
+            </td>
+
+            <td>
+              <%= a_study_block.et_in_words%>
+            </td>
+
+            <td>
+              <%= a_study_block.effort%>
+            </td>
+
+            <td>
+              <%= a_study_block.description%>
+            </td>
+
+          </tr>
+        <%end%>
       <% end %>
       <%end%>
     </table>
 
   </div>
-<!-- 
-  <div>
-    <div>
-      <h2>
-        My friends 
-      </h2>
-    </div>
-    <table>
-      <tr>
-        <th>
-          Friends (only people who you have followed + have accepted your follow request show up here)
-        </th>
-
-      </tr>
-
-      <% @list_of_friends.each do |a_friend| %>
-      <tr>
-
-
-        <td>
-          <%= User.where({:id => a_friend.sender_id}).first.username%>
-        </td>
-
-      </tr>
-      <% end %>
-    </table>
-
-  </div>
-<hr>
-  <div>
-    <h3> Add a friend! </h3>
-    <form action="/insert_follower" method="post">
-        <label for="follower_box">
-          Friend Username: 
-        </label>
-
-        <input type="text" id="follower_box" name="query_recipient_name">
-    </form>
-  </div>
---> 
