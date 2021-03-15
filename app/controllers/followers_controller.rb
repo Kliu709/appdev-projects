@@ -29,14 +29,16 @@ class FollowersController < ApplicationController
     the_follower.recipient_id = User.where({:username => the_recipient_username}).first.id
     the_follower.status = false 
 
+    
     #@real_follower = the_follower 
     #duplicate = Follower.where({:sender_id => the_follower.sender_id, :recipient_id => the_follower.recipient_id}).first
 
     #if (duplicate.sender_id == the_follower.sender_id) and (duplicate.recipient_id == the_follower.recipient_id)
      # copy = true
     #end 
-
-    if (the_follower.valid?) 
+    if (the_follower.sender_id == the_follower.recipient_id)
+      redirect_to("/followers/#{@current_user.id}", { :notice => "Follower failed to create successfully." })
+    elsif (the_follower.valid?) 
       the_follower.save
       redirect_to("/followers/#{@current_user.id}", { :notice => "Follower created successfully." })
     else
