@@ -28,10 +28,22 @@ class StudyBlocksController < ApplicationController
 
           @list_of_study_blocks.each do |my_study_block|
 
+            #if times are the same
             if(start_time == my_study_block.start_time) and (end_time == my_study_block.end_time) and (dow == my_study_block.day_of_week)
               @matching_study_blocks_received.push(a_study_block)
             end 
-            
+            #if my friend has a block contained in my block             
+            if(start_time > my_study_block.start_time) and (end_time < my_study_block.end_time)
+              @matching_study_blocks_received.push(a_study_block)
+            end 
+            #if my block is contained in a friend block 
+            if(start_time < my_study_block.start_time) and (end_time > my_study_block.end_time)
+              @matching_study_blocks_received.push(a_study_block)
+            end 
+            #my block starts outside of a friend block, but ends inside his
+            #if (start_time > my_study_block.start_time) and (end_time > my_study_block.end_time)
+            #  @matching_study_blocks_received.push(a_study_block)
+            #end 
           end 
       end 
     end 
@@ -49,9 +61,17 @@ class StudyBlocksController < ApplicationController
         dow = a_study_block.day_of_week
 
           @list_of_study_blocks.each do |my_study_block|
-
+            #if times match
             if(start_time == my_study_block.start_time) and (end_time == my_study_block.end_time) and (dow == my_study_block.day_of_week)
               @matching_study_blocks_sent.push(a_study_block)
+            end 
+            #if my block is contained in my friends block
+            if(start_time < my_study_block.start_time) and (end_time > my_study_block.end_time)
+              @matching_study_blocks_sent.push(a_study_block)
+            end 
+            #if my friend has a block contained in my block             
+            if(start_time > my_study_block.start_time) and (end_time < my_study_block.end_time)
+              @matching_study_blocks_received.push(a_study_block)
             end 
             
           end 
