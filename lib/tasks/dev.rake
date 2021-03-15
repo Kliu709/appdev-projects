@@ -25,6 +25,7 @@ task({ :sample_data => :environment}) do
   user2.password = "password"
   user2.save 
   p "Added #{User.count} Users"
+  #common 
 
 
   days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -57,6 +58,8 @@ task({ :sample_data => :environment}) do
   study_block.description = descriptions.sample
   study_block.save
 
+  #make an array of hours 
+  #end time = start + sample of hours 
 =begin
   7.times do 
     study_block = StudyBlock.new
