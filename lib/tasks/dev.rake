@@ -74,7 +74,7 @@ task({ :sample_data => :environment}) do
 =end 
   p "Added #{StudyBlock.count} Study blocks"
 
-
+=begin
   fr = Follower.new
   fr.status = true
   fr.sender_id = User.all.first.id
@@ -86,7 +86,7 @@ task({ :sample_data => :environment}) do
   fr.sender_id = User.all.at(1).id
   fr.recipient_id = User.all.first.id
   fr.save
-=begin
+
 users = User.all
 bool = [false, true]
 10.times do 
