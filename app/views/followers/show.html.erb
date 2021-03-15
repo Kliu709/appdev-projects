@@ -35,46 +35,13 @@
       </li>
       <%end %>
     </ul>
-    <!--
-    <table>
-      <tr>
-        <th>
-          Username
-        </th>
-
-        <th>
-          Status
-        </th>
-      </tr>
-
-      <% @list_of_follow_requests.each do |a_follower| %>
-      <tr>
-
-
-        <td>
-          <%= User.where({:id => a_follower.sender_id}).first.username%>
-        </td>
-
-        <td>
-          <% status = a_follower.status%>
-          <%if status == true %>
-            true
-          <%else %>
-            false
-          <%end %>
-        </td>
-
-      </tr>
-      <% end %>
-    </table>
-    --> 
   </div>
 
 <hr>
   <div>
     <div>
       <h2>
-        My friends (only people who you have followed + have accepted your follow request show up here)
+        My friends 
       </h2>
     </div>
     <table>
@@ -85,12 +52,29 @@
 
       </tr>
 
-      <% @list_of_friends.each do |a_friend| %>
+      <% @list_of_friends_received.each do |a_friend| %>
       <tr>
 
 
         <td>
           <%= User.where({:id => a_friend.sender_id}).first.username%>
+        </td>
+
+        <td>
+          <a href="/delete_follower/<%= a_friend.id %>">
+            Delete this friend 
+          </a>
+        </td>
+
+      </tr>
+      <% end %>
+
+      <% @list_of_friends_sent.each do |a_friend| %>
+      <tr>
+
+
+        <td>
+          <%= User.where({:id => a_friend.recipient_id}).first.username%>
         </td>
 
         <td>
