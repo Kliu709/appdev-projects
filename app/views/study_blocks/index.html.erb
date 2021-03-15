@@ -171,6 +171,7 @@
           #Have a list of all my friends 
           #for each friends, search their study blocks and return the ones that have a matching time to me 
       %>
+      <% if @matching_study_blocks != nil%>
       <% @matching_study_blocks.each do |a_study_block| %>
       <tr>
 
@@ -201,6 +202,7 @@
 
       </tr>
       <% end %>
+      <%end%>
     </table>
 
   </div>

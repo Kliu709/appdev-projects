@@ -28,6 +28,8 @@ class FollowersController < ApplicationController
     the_recipient_username = params.fetch("query_recipient_name")
     the_follower.recipient_id = User.where({:username => the_recipient_username}).first.id
     the_follower.status = false 
+
+    #@real_follower = the_follower 
     #duplicate = Follower.where({:sender_id => the_follower.sender_id, :recipient_id => the_follower.recipient_id}).first
 
     #if (duplicate.sender_id == the_follower.sender_id) and (duplicate.recipient_id == the_follower.recipient_id)
@@ -36,10 +38,11 @@ class FollowersController < ApplicationController
 
     if (the_follower.valid?) 
       the_follower.save
-      redirect_to("study_blocks/index.html.erb", { :notice => "Follower created successfully." })
+      redirect_to("/followers/#{@current_user.id}", { :notice => "Follower created successfully." })
     else
-      redirect_to("study_blocks/index.html.erb", { :notice => "Follower failed to create successfully." })
+      redirect_to("/followers/#{@current_user.id}", { :notice => "Follower failed to create successfully." })
     end
+
   end
 
   def update
@@ -60,9 +63,11 @@ class FollowersController < ApplicationController
 
   def destroy
     the_id = params.fetch("path_id")
-    the_follower = Follower.where({ :id => the_id }).at(0)
+    the_follower = Follower.where({ :id=> the_id }).at(0)
+    desired_record = the_follower.recipient_id 
+    the_real_follower = Follower.where({:sender_id => desired_record}).first
 
-    the_follower.destroy
+    the_real_follower.destroy
 
     redirect_to("/followers/#{@current_user.id}", { :notice => "Follower deleted successfully."} )
   end
