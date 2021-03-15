@@ -4,6 +4,7 @@ task({ :sample_data => :environment}) do
   User.destroy_all
   Follower.destroy_all
   StudyBlock.destroy_all
+
 =begin
   3.times do 
     user = User.new
@@ -13,6 +14,7 @@ task({ :sample_data => :environment}) do
     user.save 
   end 
 =end 
+
   user1 = User.new
   user1.username = "alice"
   user1.email = "alice@example.com"
@@ -29,7 +31,7 @@ task({ :sample_data => :environment}) do
 
 
   days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-
+=begin 
   now_time = Time.now
   times = []
   i = 1 
@@ -37,9 +39,12 @@ task({ :sample_data => :environment}) do
     times.push(now_time + 600 * i)
     i = i + 1 
   end 
-
+=end 
+  start_time = [Time.new(2000, 1, 1, 21), Time.new(2000, 1, 1, 4), Time.new(2000, 1, 1, 5), Time.new(2000, 1, 1, 6), Time.new(2000, 1, 1, 13), Time.new(2000, 1, 1, 17)]
+  hours = [1, 2, 3, 4, 5, 6, 7]
   effort = [0, 1, 2, 3]
   descriptions = ["FINALS WEEK GG", "Studying math!", "come hang out with me :)", "I have a pset due at midnight don't talk but sit with me"]
+=begin 
   study_block = StudyBlock.new
   study_block.start_time = Time.new(2000, 1, 1, 21)
   study_block.end_time = Time.new(2000, 1, 1, 23)
@@ -57,21 +62,21 @@ task({ :sample_data => :environment}) do
   study_block.effort = effort.sample
   study_block.description = descriptions.sample
   study_block.save
+=end 
 
   #make an array of hours 
   #end time = start + sample of hours 
-=begin
   7.times do 
     study_block = StudyBlock.new
-    study_block.start_time = times.sample
-    study_block.end_time = times.sample
+    study_block.start_time = start_time.sample
+    study_block.end_time = study_block.start_time + 3600*hours.sample
     study_block.day_of_week = days.sample
     study_block.user_id = User.all.sample.id
     study_block.effort = effort.sample
     study_block.description = descriptions.sample
     study_block.save
   end 
-=end 
+
   p "Added #{StudyBlock.count} Study blocks"
 
   fr = Follower.new
