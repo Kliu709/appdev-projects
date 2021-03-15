@@ -64,6 +64,6 @@ class FollowersController < ApplicationController
 
     the_follower.destroy
 
-    redirect_to("/followers", { :notice => "Follower deleted successfully."} )
+    redirect_to("/followers/#{@current_user.id}", { :notice => "Follower deleted successfully."} )
   end
 end
