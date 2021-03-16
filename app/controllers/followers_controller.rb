@@ -16,10 +16,10 @@ class FollowersController < ApplicationController
 
     @list_of_follow_requests = matching_followers
 
-    matching_friends = @current_user.received_follow_requests.where({ :status => true})
+    matching_friends = @current_user.received_follow_requests.where({ :status => true}).or(@current_user.sent_follow_requests.where({ :status => true}))
 
-    @list_of_friends_received = matching_friends.order({ :created_at => :desc })
-    @list_of_friends_sent = @current_user.sent_follow_requests.where({ :status => true})
+    @list_of_friends = matching_friends.order({ :created_at => :desc })
+    #@list_of_friends_sent = @current_user.sent_follow_requests.where({ :status => true})
     render({ :template => "followers/show.html.erb" })
   end
 
