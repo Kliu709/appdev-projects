@@ -28,25 +28,29 @@ class StudyBlocksController < ApplicationController
         start_time = a_study_block.start_time
         end_time = a_study_block.end_time
         dow = a_study_block.day_of_week
+        days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
           @list_of_study_blocks.each do |my_study_block|
-
-            #if times are the same
-            if(start_time == my_study_block.start_time) and (end_time == my_study_block.end_time) and (dow == my_study_block.day_of_week)
-              @matching_study_blocks.push(a_study_block)
-            #if my friend has a block contained in my block       
-            #elsif (start_time..end_time).include?(my_study_block.start_time) and (start_time..end_time).include?(my_study_block.end _time)
-            
-            #elsif(start_time > my_study_block.start_time) and (end_time < my_study_block.end_time)
-             # @matching_study_blocks_received.push(a_study_block)
-            #if my block is contained in a friend block 
-            #elsif(start_time < my_study_block.start_time) and (end_time > my_study_block.end_time)
-             # @matching_study_blocks_received.push(a_study_block) 
-            #my block starts outside of a friend block, but ends inside his
-            #elsif (start_time > my_study_block.start_time) and (end_time > my_study_block.end_time)
-            #  @matching_study_blocks_received.push(a_study_block)
-            #end
-            end
+              #if times are the same
+              if(my_study_block.day_of_week == dow)
+                if(start_time == my_study_block.start_time) and (end_time == my_study_block.end_time) and (dow == my_study_block.day_of_week)
+                  @matching_study_blocks.push(a_study_block)
+                #if my friend has a block contained in my block       
+                elsif (start_time..end_time).include?(my_study_block.start_time) and (start_time..end_time).include?(my_study_block.end_time)
+                  @matching_study_blocks.push(a_study_block)
+                #elsif(start_time > my_study_block.start_time) and (end_time < my_study_block.end_time)
+                # @matching_study_blocks_received.push(a_study_block)
+                #if my block is contained in a friend block 
+                #elsif(start_time < my_study_block.start_time) and (end_time > my_study_block.end_time)
+                # @matching_study_blocks_received.push(a_study_block) 
+                #my block starts outside of a friend block, but ends inside his
+                #elsif (start_time > my_study_block.start_time) and (end_time > my_study_block.end_time)
+                #  @matching_study_blocks_received.push(a_study_block)
+                #en
+                else 
+                  next 
+                end
+              end 
           end 
       end 
     end 
@@ -85,6 +89,7 @@ class StudyBlocksController < ApplicationController
 
     render({ :template => "study_blocks/index.html.erb" })
   end
+
 
   def show
     the_id = params.fetch("path_id")
