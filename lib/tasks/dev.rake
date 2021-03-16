@@ -44,7 +44,7 @@ task({ :sample_data => :environment}) do
   hours = [1, 2, 3, 4, 5, 6, 7]
   effort = [0, 1, 2, 3]
   descriptions = ["FINALS WEEK GG", "Studying math!", "come hang out with me :)", "I have a pset due at midnight don't talk but sit with me"]
-=begin 
+
   study_block = StudyBlock.new
   study_block.start_time = Time.new(2000, 1, 1, 21)
   study_block.end_time = Time.new(2000, 1, 1, 23)
@@ -62,7 +62,6 @@ task({ :sample_data => :environment}) do
   study_block.effort = effort.sample
   study_block.description = descriptions.sample
   study_block.save
-=end 
 
   #make an array of hours 
   #end time = start + sample of hours 

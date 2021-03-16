@@ -6,7 +6,7 @@ class StudyBlocksController < ApplicationController
 
 
     
-    matching_friends = @current_user.received_follow_requests.where({ :status => true})
+    matching_friends = @current_user.received_follow_requests.where({ :status => true})#.or(where({ :status => true}))
 
     @list_of_friends_received = matching_friends.order({ :created_at => :desc })
     @list_of_friends_sent = @current_user.sent_follow_requests.where({ :status => true})
@@ -31,7 +31,9 @@ class StudyBlocksController < ApplicationController
             #if times are the same
             if(start_time == my_study_block.start_time) and (end_time == my_study_block.end_time) and (dow == my_study_block.day_of_week)
               @matching_study_blocks_received.push(a_study_block)
-            #if my friend has a block contained in my block             
+            #if my friend has a block contained in my block       
+            #elsif (start_time..end_time).include?(my_study_block.start_time) and (start_time..end_time).include?(my_study_block.end _time)
+            
             #elsif(start_time > my_study_block.start_time) and (end_time < my_study_block.end_time)
              # @matching_study_blocks_received.push(a_study_block)
             #if my block is contained in a friend block 
