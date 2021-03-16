@@ -179,8 +179,8 @@
           #Have a list of all my friends 
           #for each friends, search their study blocks and return the ones that have a matching time to me 
       %>
-      <% if @matching_study_blocks_received != nil%>
-      <% @matching_study_blocks_received.each do |a_study_block| %>
+      <% if @matching_study_blocks != nil%>
+      <% @matching_study_blocks.each do |a_study_block| %>
          <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
           <tr>
 
@@ -213,7 +213,7 @@
         <%end%>
       <% end %>
       <%end%>
-
+<!--
       <% if @matching_study_blocks_sent != nil%>
       <% @matching_study_blocks_sent.each do |a_study_block| %>
         <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
@@ -247,6 +247,7 @@
         <%end%>
       <% end %>
       <%end%>
+  --> 
     </table>
 
   </div>
