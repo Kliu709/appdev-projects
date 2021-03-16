@@ -28,25 +28,30 @@ class StudyBlocksController < ApplicationController
         start_time = a_study_block.start_time
         end_time = a_study_block.end_time
         dow = a_study_block.day_of_week
-        days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        @matching = ""
 
           @list_of_study_blocks.each do |my_study_block|
               #if times are the same
               if(my_study_block.day_of_week == dow)
                 if(start_time == my_study_block.start_time) and (end_time == my_study_block.end_time) and (dow == my_study_block.day_of_week)
                   @matching_study_blocks.push(a_study_block)
-                #if my friend has a block contained in my block       
+                  @matching = "Full!"
+                #if my block is in a friends block       
                 elsif (start_time..end_time).include?(my_study_block.start_time) and (start_time..end_time).include?(my_study_block.end_time)
                   @matching_study_blocks.push(a_study_block)
-                #elsif(start_time > my_study_block.start_time) and (end_time < my_study_block.end_time)
-                # @matching_study_blocks_received.push(a_study_block)
-                #if my block is contained in a friend block 
-                #elsif(start_time < my_study_block.start_time) and (end_time > my_study_block.end_time)
-                # @matching_study_blocks_received.push(a_study_block) 
-                #my block starts outside of a friend block, but ends inside his
-                #elsif (start_time > my_study_block.start_time) and (end_time > my_study_block.end_time)
-                #  @matching_study_blocks_received.push(a_study_block)
-                #en
+                  @matching = "Partial"
+                #if my friends block is in my block
+                elsif (my_study_block.start_time..my_study_block.end_time).include?(start_time) and (my_study_block.start_time..my_study_block.end_time).include?(end_time)
+                  @matching_study_blocks.push(a_study_block)
+                  @matching = "Partial"
+                #if my block starts in my friends block, but ends after it
+                elsif (start_time..end_time).include?(my_study_block.start_time) and ((my_study_block.start_time - end_time) < 1800)
+                  @matching_study_blocks.push(a_study_block)
+                  @matching = "Partial"
+                #if my block ends in my friends block, but starts before it
+                elsif (start_time..end_time).include?(my_study_block.end_time) and ((my_study_block.end_time - start_time) > 1800)
+                  @matching_study_blocks.push(a_study_block)
+                  @matching = "Partial"
                 else 
                   next 
                 end
@@ -54,38 +59,6 @@ class StudyBlocksController < ApplicationController
           end 
       end 
     end 
-=begin 
-    @list_of_friends_sent.each do |a_friend|
-
-      friend_user = User.where({:id => a_friend.sender_id}).first
-      friend_study_blocks = friend_user.study_blocks
-      @matching_study_blocks_sent = []
-
-      friend_study_blocks.each do |a_study_block|
-
-        start_time = a_study_block.start_time
-        end_time = a_study_block.end_time
-        dow = a_study_block.day_of_week
-
-          @list_of_study_blocks.each do |my_study_block|
-            #if times match
-            if(start_time == my_study_block.start_time) and (end_time == my_study_block.end_time) and (dow == my_study_block.day_of_week)
-              @matching_study_blocks_sent.push(a_study_block)
-            end 
-            #if my block is contained in my friends block
-            #if(start_time < my_study_block.start_time) and (end_time > my_study_block.end_time)
-            #  @matching_study_blocks_sent.push(a_study_block)
-            #end 
-            #if my friend has a block contained in my block             
-            #if(start_time > my_study_block.start_time) and (end_time < my_study_block.end_time)
-             # @matching_study_blocks_received.push(a_study_block)
-            #end 
-            
-          end 
-      end 
-
-    end 
-=end 
 
     render({ :template => "study_blocks/index.html.erb" })
   end
