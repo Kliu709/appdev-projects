@@ -75,12 +75,12 @@ class StudyBlocksController < ApplicationController
     the_study_block.description = params.fetch("query_description")
 
     if (the_study_block.end_time < the_study_block.start_time)
-      redirect_to("/study_blocks", { :notice => "Study block failed to create successfully." })
+      redirect_to("/study_blocks", { :alert => "End time cannot be earlier than start time." })
     elsif the_study_block.valid?
       the_study_block.save
       redirect_to("/study_blocks", { :notice => "Study block created successfully." })
     else
-      redirect_to("/study_blocks", { :notice => "Study block failed to create successfully." })
+      redirect_to("/study_blocks", { :alert => "Study block failed to create successfully." })
     end
   end
 

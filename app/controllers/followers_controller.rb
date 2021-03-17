@@ -39,14 +39,14 @@ class FollowersController < ApplicationController
     #end 
     existing_copy = Follower.where({:sender_id => the_follower.recipient_id, :recipient_id => the_follower.sender_id}).first
     if (the_follower.sender_id == the_follower.recipient_id)
-      redirect_to("/followers/#{@current_user.id}", { :notice => "Can't friend yourself" })
+      redirect_to("/followers/#{@current_user.id}", { :alert => "Can't friend yourself" })
     elsif (existing_copy != nil)
-      redirect_to("/followers/#{@current_user.id}", { :notice => "Request already sent!" })
+      redirect_to("/followers/#{@current_user.id}", { :alert => "Request already sent!" })
     elsif (the_follower.valid?) 
       the_follower.save
       redirect_to("/followers/#{@current_user.id}", { :notice => "Friend request sent!" })
     else
-      redirect_to("/followers/#{@current_user.id}", { :notice => "Friend request failed to create successfully." })
+      redirect_to("/followers/#{@current_user.id}", { :alert => "Friend request failed to create successfully." })
     end
 
   end
