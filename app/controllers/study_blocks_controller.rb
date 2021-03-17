@@ -86,6 +86,7 @@ class StudyBlocksController < ApplicationController
     the_study_block.user_id = @current_user.id
     the_study_block.effort = params.fetch("query_effort")
     the_study_block.description = params.fetch("query_description")
+    the_study_block.medium= params.fetch("query_medium")
 
     if (the_study_block.end_time < the_study_block.start_time)
       redirect_to("/study_blocks", { :alert => "End time cannot be earlier than start time." })

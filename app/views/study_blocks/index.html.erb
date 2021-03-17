@@ -31,6 +31,9 @@
         <th>
           Description
         </th>
+        <th>
+          Contact Me!
+        </th>
       </tr>
 
       <% @sunday_blocks.each do |a_study_block| %>
@@ -49,6 +52,9 @@
         </td>
         <td>
           <%= a_study_block.description%>
+        </td>
+        <td>
+          <%= a_study_block.medium%>
         </td>
         <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
@@ -75,6 +81,9 @@
           <%= a_study_block.description%>
         </td>
         <td>
+          <%= a_study_block.medium%>
+        </td>
+        <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
             Delete this study block 
           </a>
@@ -97,6 +106,9 @@
         </td>
         <td>
           <%= a_study_block.description%>
+        </td>
+        <td>
+          <%= a_study_block.medium%>
         </td>
         <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
@@ -123,6 +135,9 @@
           <%= a_study_block.description%>
         </td>
         <td>
+          <%= a_study_block.medium%>
+        </td>
+        <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
             Delete this study block 
           </a>
@@ -145,6 +160,9 @@
         </td>
         <td>
           <%= a_study_block.description%>
+        </td>
+        <td>
+          <%= a_study_block.medium%>
         </td>
         <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
@@ -171,6 +189,9 @@
           <%= a_study_block.description%>
         </td>
         <td>
+          <%= a_study_block.medium%>
+        </td>
+        <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
             Delete this study block 
           </a>
@@ -193,6 +214,9 @@
         </td>
         <td>
           <%= a_study_block.description%>
+        </td>
+        <td>
+          <%= a_study_block.medium%>
         </td>
         <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
@@ -269,6 +293,13 @@
         <input type="text" id="description_box" name="query_description">
       </div>
 
+      <div>
+        <label for="medium_box">
+          How do you want people to reach you? 
+        </label>
+
+        <input type="text" id="medium_box" name="query_medium">
+      </div>
       <button>
         Create study block
       </button>
@@ -308,6 +339,9 @@
         <th>
           Description
         </th>
+        <th>
+          Contact me! 
+        </th>
       </tr>
       <%  #@list_of_matching_study_blocks 
           #Have a list of all my friends 
@@ -337,6 +371,9 @@
                   </td>
                   <td>
                     <%= a_study_block.description%>
+                  </td>
+                  <td>
+                    <%= a_study_block.medium%>
                   </td>
                 </tr>
               <%end%>

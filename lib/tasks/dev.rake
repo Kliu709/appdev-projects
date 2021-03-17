@@ -44,7 +44,7 @@ task({ :sample_data => :environment}) do
   hours = [1, 2, 3, 4, 5, 6, 7]
   effort = [0, 1, 2, 3]
   descriptions = ["FINALS WEEK GG", "Studying math!", "come hang out with me :)", "I have a pset due at midnight don't talk but sit with me"]
-
+  mediums = ["Zoom Link: https://uchicago.zoom.us", "Text me at: 123-456-7890", "Message me on FB!"]
   study_block = StudyBlock.new
   study_block.start_time = Time.new(2000, 1, 1, 21)
   study_block.end_time = Time.new(2000, 1, 1, 23)
@@ -52,6 +52,7 @@ task({ :sample_data => :environment}) do
   study_block.user_id = User.all.first.id
   study_block.effort = effort.sample
   study_block.description = descriptions.sample
+  study_block.medium = mediums.sample 
   study_block.save
 
   study_block = StudyBlock.new
@@ -61,6 +62,7 @@ task({ :sample_data => :environment}) do
   study_block.user_id = User.all.at(1).id
   study_block.effort = effort.sample
   study_block.description = descriptions.sample
+  study_block.medium = mediums.sample 
   study_block.save
 
   #make an array of hours 
@@ -73,6 +75,7 @@ task({ :sample_data => :environment}) do
     study_block.user_id = User.all.sample.id
     study_block.effort = effort.sample
     study_block.description = descriptions.sample
+    study_block.medium = mediums.sample 
     study_block.save
   end 
 

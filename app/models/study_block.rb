@@ -7,6 +7,7 @@
 #  description :string
 #  effort      :string
 #  end_time    :time
+#  medium      :string
 #  start_time  :time
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
