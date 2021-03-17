@@ -31,12 +31,6 @@ class FollowersController < ApplicationController
     the_follower.status = false 
 
     
-    #@real_follower = the_follower 
-    #duplicate = Follower.where({:sender_id => the_follower.sender_id, :recipient_id => the_follower.recipient_id}).first
-
-    #if (duplicate.sender_id == the_follower.sender_id) and (duplicate.recipient_id == the_follower.recipient_id)
-     # copy = true
-    #end 
     existing_copy = Follower.where({:sender_id => the_follower.recipient_id, :recipient_id => the_follower.sender_id}).first
     if (the_follower.sender_id == the_follower.recipient_id)
       redirect_to("/followers/#{@current_user.id}", { :alert => "Can't friend yourself" })
