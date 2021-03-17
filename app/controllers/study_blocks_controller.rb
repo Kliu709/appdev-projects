@@ -3,7 +3,13 @@ class StudyBlocksController < ApplicationController
     my_study_blocks = @current_user.study_blocks
 
     @list_of_study_blocks = my_study_blocks.order({ :created_at => :desc })
-
+    @sunday_blocks = my_study_blocks.where({:day_of_week => "Sunday"}).order({:start_time => :asc})
+    @monday_blocks = my_study_blocks.where({:day_of_week => "Monday"}).order({:start_time => :asc})
+    @tuesday_blocks = my_study_blocks.where({:day_of_week => "Tuesday"}).order({:start_time => :asc})
+    @wednesday_blocks = my_study_blocks.where({:day_of_week => "Wednesday"}).order({:start_time => :asc})
+    @thursday_blocks = my_study_blocks.where({:day_of_week => "Thursday"}).order({:start_time => :asc})
+    @friday_blocks = my_study_blocks.where({:day_of_week => "Friday"}).order({:start_time => :asc})
+    @saturday_blocks = my_study_blocks.where({:day_of_week => "Saturday"}).order({:start_time => :asc})
 
     
     matching_friends = @current_user.received_follow_requests.where({ :status => true}).or(@current_user.sent_follow_requests.where({ :status => true}))
@@ -51,6 +57,13 @@ class StudyBlocksController < ApplicationController
       end 
     end 
 
+    #@matching_sunday_blocks = @matching_study_blocks.where({:day_of_week => "Sunday"}).order({:start_time => :asc})
+    #@matching_monday_blocks = @matching_study_blocks.where({:day_of_week => "Monday"}).order({:start_time => :asc})
+    #@matching_tuesday_blocks = @matching_study_blocks.where({:day_of_week => "Tuesday"}).order({:start_time => :asc})
+    #@matching_wednesday_blocks = @matching_study_blocks.where({:day_of_week => "Wednesday"}).order({:start_time => :asc})
+    #@matching_thursday_blocks = @matching_study_blocks.where({:day_of_week => "Thursday"}).order({:start_time => :asc})
+    #@matching_friday_blocks = @matching_study_blocks.where({:day_of_week => "Friday"}).order({:start_time => :asc})
+    #@matching_saturday_blocks = @matching_study_blocks.where({:day_of_week => "Saturday"}).order({:start_time => :asc})
     render({ :template => "study_blocks/index.html.erb" })
   end
 

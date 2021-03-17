@@ -33,33 +33,167 @@
         </th>
       </tr>
 
-      <% @list_of_study_blocks.each do |a_study_block| %>
+      <% @sunday_blocks.each do |a_study_block| %>
       <tr>
-
-
         <td>
           <%= a_study_block.day_of_week %>
         </td>
-
         <td>
           <%= a_study_block.st_in_words %>
         </td>
-
         <td>
           <%= a_study_block.et_in_words %>
         </td>
-
         <td>
           <%= a_study_block.effort %>
         </td>
-
-
         <td>
           <%= a_study_block.description%>
         </td>
-
-       
-
+        <td>
+          <a href="/delete_study_block/<%= a_study_block.id %>">
+            Delete this study block 
+          </a>
+        </td>
+      </tr>
+      <% end %>
+      <% @monday_blocks.each do |a_study_block| %>
+      <tr>
+        <td>
+          <%= a_study_block.day_of_week %>
+        </td>
+        <td>
+          <%= a_study_block.st_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.et_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.effort %>
+        </td>
+        <td>
+          <%= a_study_block.description%>
+        </td>
+        <td>
+          <a href="/delete_study_block/<%= a_study_block.id %>">
+            Delete this study block 
+          </a>
+        </td>
+      </tr>
+      <% end %>
+       <% @tuesday_blocks.each do |a_study_block| %>
+      <tr>
+        <td>
+          <%= a_study_block.day_of_week %>
+        </td>
+        <td>
+          <%= a_study_block.st_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.et_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.effort %>
+        </td>
+        <td>
+          <%= a_study_block.description%>
+        </td>
+        <td>
+          <a href="/delete_study_block/<%= a_study_block.id %>">
+            Delete this study block 
+          </a>
+        </td>
+      </tr>
+      <% end %>
+       <% @wednesday_blocks.each do |a_study_block| %>
+      <tr>
+        <td>
+          <%= a_study_block.day_of_week %>
+        </td>
+        <td>
+          <%= a_study_block.st_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.et_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.effort %>
+        </td>
+        <td>
+          <%= a_study_block.description%>
+        </td>
+        <td>
+          <a href="/delete_study_block/<%= a_study_block.id %>">
+            Delete this study block 
+          </a>
+        </td>
+      </tr>
+      <% end %>
+       <% @thursday_blocks.each do |a_study_block| %>
+      <tr>
+        <td>
+          <%= a_study_block.day_of_week %>
+        </td>
+        <td>
+          <%= a_study_block.st_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.et_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.effort %>
+        </td>
+        <td>
+          <%= a_study_block.description%>
+        </td>
+        <td>
+          <a href="/delete_study_block/<%= a_study_block.id %>">
+            Delete this study block 
+          </a>
+        </td>
+      </tr>
+      <% end %>
+       <% @friday_blocks.each do |a_study_block| %>
+      <tr>
+        <td>
+          <%= a_study_block.day_of_week %>
+        </td>
+        <td>
+          <%= a_study_block.st_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.et_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.effort %>
+        </td>
+        <td>
+          <%= a_study_block.description%>
+        </td>
+        <td>
+          <a href="/delete_study_block/<%= a_study_block.id %>">
+            Delete this study block 
+          </a>
+        </td>
+      </tr>
+      <% end %>
+       <% @saturday_blocks.each do |a_study_block| %>
+      <tr>
+        <td>
+          <%= a_study_block.day_of_week %>
+        </td>
+        <td>
+          <%= a_study_block.st_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.et_in_words %>
+        </td>
+        <td>
+          <%= a_study_block.effort %>
+        </td>
+        <td>
+          <%= a_study_block.description%>
+        </td>
         <td>
           <a href="/delete_study_block/<%= a_study_block.id %>">
             Delete this study block 
@@ -180,38 +314,188 @@
           #for each friends, search their study blocks and return the ones that have a matching time to me 
       %>
       <% if @matching_study_blocks != nil%>
-      <% @matching_study_blocks.each do |a_study_block| %>
-         <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
-          <tr>
-
-
-            <td>
-              <%= User.where({:id => a_study_block.user_id}).first.username%>
-            </td>
-
-            <td>
-              <%= a_study_block.day_of_week%>
-            </td>
-
-            <td>
-              <%= a_study_block.st_in_words%>
-            </td>
-
-            <td>
-              <%= a_study_block.et_in_words%>
-            </td>
-
-            <td>
-              <%= a_study_block.effort%>
-            </td>
-
-            <td>
-              <%= a_study_block.description%>
-            </td>
-
-          </tr>
+        <% @matching_study_blocks.each do |a_study_block| %>
+          <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+            <% if a_study_block.day_of_week == "Sunday"%>
+              <tr>
+                <td>
+                  <%= User.where({:id => a_study_block.user_id}).first.username%>
+                </td>
+                <td>
+                  <%= a_study_block.day_of_week%>
+                </td>
+                <td>
+                  <%= a_study_block.st_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.et_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.effort%>
+                </td>
+                <td>
+                  <%= a_study_block.description%>
+                </td>
+              </tr>
+            <%end%>
+          <%end%>
         <%end%>
-      <% end %>
+        <% @matching_study_blocks.each do |a_study_block| %>
+          <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+            <% if a_study_block.day_of_week == "Monday"%>
+              <tr>
+                <td>
+                  <%= User.where({:id => a_study_block.user_id}).first.username%>
+                </td>
+                <td>
+                  <%= a_study_block.day_of_week%>
+                </td>
+                <td>
+                  <%= a_study_block.st_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.et_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.effort%>
+                </td>
+                <td>
+                  <%= a_study_block.description%>
+                </td>
+              </tr>
+            <%end%>
+          <%end%>
+        <%end%>
+        <% @matching_study_blocks.each do |a_study_block| %>
+          <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+            <% if a_study_block.day_of_week == "Tuesday"%>
+              <tr>
+                <td>
+                  <%= User.where({:id => a_study_block.user_id}).first.username%>
+                </td>
+                <td>
+                  <%= a_study_block.day_of_week%>
+                </td>
+                <td>
+                  <%= a_study_block.st_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.et_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.effort%>
+                </td>
+                <td>
+                  <%= a_study_block.description%>
+                </td>
+              </tr>
+            <%end%>
+          <%end%>
+        <%end%>
+        <% @matching_study_blocks.each do |a_study_block| %>
+          <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+            <% if a_study_block.day_of_week == "Wednesday"%>
+              <tr>
+                <td>
+                  <%= User.where({:id => a_study_block.user_id}).first.username%>
+                </td>
+                <td>
+                  <%= a_study_block.day_of_week%>
+                </td>
+                <td>
+                  <%= a_study_block.st_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.et_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.effort%>
+                </td>
+                <td>
+                  <%= a_study_block.description%>
+                </td>
+              </tr>
+            <%end%>
+          <%end%>
+        <%end%>
+        <% @matching_study_blocks.each do |a_study_block| %>
+          <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+            <% if a_study_block.day_of_week == "Thursday"%>
+              <tr>
+                <td>
+                  <%= User.where({:id => a_study_block.user_id}).first.username%>
+                </td>
+                <td>
+                  <%= a_study_block.day_of_week%>
+                </td>
+                <td>
+                  <%= a_study_block.st_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.et_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.effort%>
+                </td>
+                <td>
+                  <%= a_study_block.description%>
+                </td>
+              </tr>
+            <%end%>
+          <%end%>
+        <%end%>
+        <% @matching_study_blocks.each do |a_study_block| %>
+          <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+            <% if a_study_block.day_of_week == "Friday"%>
+              <tr>
+                <td>
+                  <%= User.where({:id => a_study_block.user_id}).first.username%>
+                </td>
+                <td>
+                  <%= a_study_block.day_of_week%>
+                </td>
+                <td>
+                  <%= a_study_block.st_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.et_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.effort%>
+                </td>
+                <td>
+                  <%= a_study_block.description%>
+                </td>
+              </tr>
+            <%end%>
+          <%end%>
+        <%end%>
+        <% @matching_study_blocks.each do |a_study_block| %>
+          <% if @current_user.username != User.where({:id => a_study_block.user_id}).first.username %>
+            <% if a_study_block.day_of_week == "Saturday"%>
+              <tr>
+                <td>
+                  <%= User.where({:id => a_study_block.user_id}).first.username%>
+                </td>
+                <td>
+                  <%= a_study_block.day_of_week%>
+                </td>
+                <td>
+                  <%= a_study_block.st_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.et_in_words%>
+                </td>
+                <td>
+                  <%= a_study_block.effort%>
+                </td>
+                <td>
+                  <%= a_study_block.description%>
+                </td>
+              </tr>
+            <%end%>
+          <%end%>
+        <%end%>
       <%end%>
     </table>
   </div>
