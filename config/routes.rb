@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   
   # UPDATE
   
-  #post("/modify_follower/:path_id", { :controller => "followers", :action => "update" })
+  post("/modify_follower/:path_id", { :controller => "followers", :action => "update" })
   
   # DELETE
   get("/delete_follower/:path_id", { :controller => "followers", :action => "destroy" })

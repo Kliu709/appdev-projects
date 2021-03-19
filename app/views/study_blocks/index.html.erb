@@ -7,6 +7,87 @@
 </div>
 
 <hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new study block
+    </h2>
+
+    <form action="/insert_study_block" method="post">
+      <div>
+        <label for="start_time_box">
+          Start time (CST)*
+        </label>
+
+        <input type="time" step="1800" id="start_time_box" name="query_start_time">
+      </div>
+
+      <div>
+        <label for="end_time_box">
+          End time (CST)*
+        </label>
+
+        <input type="time" step="1800" id="end_time_box" name="query_end_time">
+      </div>
+
+      <div>
+        <label for="day_of_week_box">
+          Day of week*
+        </label>
+
+        <select id="day_of_week_box" name="query_day_of_week">
+          <option value="Sunday">Sunday</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+        </select >
+      </div>
+
+        <input type="hidden" name="query_user_id" value="<%@current_user.id%>">
+
+      <div>
+        <label for="effort_box">
+          Effort*
+        </label>
+        <select id="effort_box" name="query_effort">
+          <option value="0">0 - Not Studying (I don't really want to study I just want to talk)</option>
+          <option value="1">1 - Light Studying (I want to study a little bit and want to talk more) </option>
+          <option value="2">2 - Moderate Studying (I want study a decent amount and want to talk occasionally)</option>
+          <option value="3">3 - Hard Studying (I want to study a lot and do not want to talk much)</option>
+        </select >
+      
+      </div>
+
+      <div>
+        <label for="medium_box">
+          How do you want people to reach you?*
+        </label>
+
+        <input type="text" id="medium_box" name="query_medium">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+      <div>
+        Note: * means the field is required 
+      </div>
+      <button class="btn btn-success">
+        Create study block
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
 <h2> <%= @current_user.username%>'s Calendar</h2>
 <div>
   <div>
@@ -282,87 +363,6 @@
 </div>
 
 <hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new study block
-    </h2>
-
-    <form action="/insert_study_block" method="post">
-      <div>
-        <label for="start_time_box">
-          Start time (CST)*
-        </label>
-
-        <input type="time" step="1800" id="start_time_box" name="query_start_time">
-      </div>
-
-      <div>
-        <label for="end_time_box">
-          End time (CST)*
-        </label>
-
-        <input type="time" step="1800" id="end_time_box" name="query_end_time">
-      </div>
-
-      <div>
-        <label for="day_of_week_box">
-          Day of week*
-        </label>
-
-        <select id="day_of_week_box" name="query_day_of_week">
-          <option value="Sunday">Sunday</option>
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-          <option value="Saturday">Saturday</option>
-        </select >
-      </div>
-
-        <input type="hidden" name="query_user_id" value="<%@current_user.id%>">
-
-      <div>
-        <label for="effort_box">
-          Effort*
-        </label>
-        <select id="effort_box" name="query_effort">
-          <option value="0">0 - Not Studying (I don't really want to study I just want to talk)</option>
-          <option value="1">1 - Light Studying (I want to study a little bit and want to talk more) </option>
-          <option value="2">2 - Moderate Studying (I want study a decent amount and want to talk occasionally)</option>
-          <option value="3">3 - Hard Studying (I want to study a lot and do not want to talk much)</option>
-        </select >
-      
-      </div>
-
-      <div>
-        <label for="medium_box">
-          How do you want people to reach you?*
-        </label>
-
-        <input type="text" id="medium_box" name="query_medium">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <input type="text" id="description_box" name="query_description">
-      </div>
-      <div>
-        Note: * means the field is required 
-      </div>
-      <button class="btn btn-success">
-        Create study block
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
 <div>
     <div>
       <h2>
@@ -438,3 +438,8 @@
       <%end%>
     </table>
   </div>
+<!--
+  <% @list_of_friends.each do |a_friend| %>
+  <%= a_friend.recipient_id%>
+  <%end %>
+  --> 

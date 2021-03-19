@@ -15,15 +15,16 @@ class StudyBlocksController < ApplicationController
     matching_friends = @current_user.received_follow_requests.where({ :status => true}).or(@current_user.sent_follow_requests.where({ :status => true}))
 
     @list_of_friends = matching_friends.order({ :created_at => :desc })
-    
+    @matching_study_blocks = []
     @list_of_friends.each do |a_friend|
+    #a_friend = @list_of_friends.first
       if @current_user.id == a_friend.recipient_id 
         @friend_user = User.where({:id => a_friend.sender_id}).first
       else 
         @friend_user = User.where({:id => a_friend.recipient_id}).first 
       end 
       friend_study_blocks = @friend_user.study_blocks
-      @matching_study_blocks = []
+      
 
       friend_study_blocks.each do |a_study_block|
 
