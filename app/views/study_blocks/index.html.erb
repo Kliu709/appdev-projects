@@ -254,7 +254,7 @@
     <form action="/insert_study_block" method="post">
       <div>
         <label for="start_time_box">
-          Start time (CST)
+          Start time (CST)*
         </label>
 
         <input type="time" step="1800" id="start_time_box" name="query_start_time">
@@ -262,7 +262,7 @@
 
       <div>
         <label for="end_time_box">
-          End time (CST)
+          End time (CST)*
         </label>
 
         <input type="time" step="1800" id="end_time_box" name="query_end_time">
@@ -270,7 +270,7 @@
 
       <div>
         <label for="day_of_week_box">
-          Day of week
+          Day of week*
         </label>
 
         <select id="day_of_week_box" name="query_day_of_week">
@@ -288,7 +288,7 @@
 
       <div>
         <label for="effort_box">
-          Effort
+          Effort*
         </label>
         <select id="effort_box" name="query_effort">
           <option value="0">0 - Not Studying (I don't really want to study I just want to talk)</option>
@@ -300,20 +300,23 @@
       </div>
 
       <div>
+        <label for="medium_box">
+          How do you want people to reach you?*
+        </label>
+
+        <input type="text" id="medium_box" name="query_medium">
+      </div>
+
+      <div>
         <label for="description_box">
           Description
         </label>
 
         <input type="text" id="description_box" name="query_description">
       </div>
-
       <div>
-        <label for="medium_box">
-          How do you want people to reach you? 
-        </label>
-
-        <input type="text" id="medium_box" name="query_medium">
-      </div>
+        Note: * means the field is required 
+      <div>
       <button type="button" class="btn btn-success">
         Create study block
       </button>
