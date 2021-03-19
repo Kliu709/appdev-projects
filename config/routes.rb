@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   post("/insert_study_block", { :controller => "study_blocks", :action => "create" })
           
   # READ
-  get("/study_blocks", { :controller => "study_blocks", :action => "index" })
+ #get("/study_blocks", { :controller => "study_blocks", :action => "index" })
   
   get("/study_blocks/:path_id", { :controller => "study_blocks", :action => "show" })
   
@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   post("/insert_follower", { :controller => "followers", :action => "create" })
           
   # READ
-  get("/followers", { :controller => "followers", :action => "index" })
+  #get("/followers", { :controller => "followers", :action => "index" })
   
   get("/followers/:path_id", { :controller => "followers", :action => "show" })
   
