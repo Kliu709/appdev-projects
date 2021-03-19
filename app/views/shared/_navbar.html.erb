@@ -15,17 +15,22 @@
             Resources
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if @current_user != nil%>
             <a href="/study_blocks" class="dropdown-item">
               Your Study Blocks
             </a>
-            <% if @current_user != nil%>
             <a href="/followers/<%=@current_user.id%>"  class="dropdown-item">
               Your Followers
             </a>
+            <a href="/edit_user_profile" class = "dropdown-item">
+              Edit your Profile
+            </a>
             <%end%>
+            <% if @current_user == nil%>
             <a href="/user_sign_in" class="dropdown-item">
               Sign-up
             </a>
+            <%end%>
             <a href="/user_sign_out" class="dropdown-item">
               Sign-out
             </a>
