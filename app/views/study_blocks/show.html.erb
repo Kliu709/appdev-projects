@@ -1,7 +1,8 @@
+<% if @current_user.id == @the_study_block.user_id%>
 <div>
   <div>
     <h1>
-      Study block #<%= @the_study_block.id %> details
+      <%= @current_user.username %>'s Study Block Details
     </h1>
 
     <div>
@@ -20,20 +21,6 @@
 
     <dl>
       <dt>
-        Start time
-      </dt>
-      <dd>
-        <%= @the_study_block.start_time %>
-      </dd>
-
-      <dt>
-        End time
-      </dt>
-      <dd>
-        <%= @the_study_block.end_time %>
-      </dd>
-
-      <dt>
         Day of week
       </dt>
       <dd>
@@ -41,31 +28,37 @@
       </dd>
 
       <dt>
-        User
+        Start time
       </dt>
       <dd>
-        <%= @the_study_block.user_id %>
+        <%= @the_study_block.st_in_words %>
       </dd>
 
       <dt>
-        Effort
+        End time
+      </dt>
+      <dd>
+        <%= @the_study_block.et_in_words %>
+      </dd>
+
+      <dt>
+        Effort Level 
       </dt>
       <dd>
         <%= @the_study_block.effort %>
       </dd>
 
       <dt>
-        Created at
+        Description
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_study_block.created_at) %> ago
+        <%= @the_study_block.description %>
       </dd>
-
       <dt>
-        Updated at
+        Contact Method
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_study_block.updated_at) %> ago
+        <%= @the_study_block.medium %>
       </dd>
     </dl>
   </div>
@@ -80,52 +73,81 @@
       Edit study block
     </h2>
 
-    <form action="/modify_study_block/<%= @the_study_block.id %>"  method="post" >
+    <form action="/modify_study_block/<%= @the_study_block.id %>"  method="post">
       <div>
         <label for="start_time_box">
-          Start time
+          Start time (CST)*
         </label>
 
-        <input type="time" id="start_time_box" name="query_start_time" value="<%= @the_study_block.start_time %>">
+        <input type="time" step="1800" id="start_time_box" name="query_start_time">
       </div>
 
       <div>
         <label for="end_time_box">
-          End time
+          End time (CST)*
         </label>
 
-        <input type="time" id="end_time_box" name="query_end_time" value="<%= @the_study_block.end_time %>">
+        <input type="time" step="1800" id="end_time_box" name="query_end_time">
       </div>
 
       <div>
         <label for="day_of_week_box">
-          Day of week
+          Day of week*
         </label>
 
-        <input type="text" id="day_of_week_box" name="query_day_of_week" value="<%= @the_study_block.day_of_week %>">
+        <select id="day_of_week_box" name="query_day_of_week">
+          <option value="Sunday">Sunday</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+        </select >
       </div>
 
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_study_block.user_id %>">
-      </div>
+        <input type="hidden" name="query_user_id" value="<%@current_user.id%>">
 
       <div>
         <label for="effort_box">
-          Effort
+          Effort*
         </label>
-
-        <input type="text" id="effort_box" name="query_effort" value="<%= @the_study_block.effort %>">
+        <select id="effort_box" name="query_effort">
+          <option value="0">0 - Not Studying (I don't really want to study I just want to talk)</option>
+          <option value="1">1 - Light Studying (I want to study a little bit and want to talk more) </option>
+          <option value="2">2 - Moderate Studying (I want study a decent amount and want to talk occasionally)</option>
+          <option value="3">3 - Hard Studying (I want to study a lot and do not want to talk much)</option>
+        </select >
+      
       </div>
 
-      <button>
-        Update study block
+      <div>
+        <label for="medium_box">
+          How do you want people to reach you?*
+        </label>
+
+        <input value = "<%=@the_study_block.medium%>" type="text" id="medium_box" name="query_medium">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input value = "<%=@the_study_block.description%>" type="text" id="description_box" name="query_description">
+      </div>
+      <div>
+        Note: * means the field is required 
+      </div>
+
+      <button class="btn btn-link">
+        Update Study Block
       </button>
     </form>
   </div>
 </div>
 
 <hr>
+<%else%>
+This is not your page! 
+<%end%>

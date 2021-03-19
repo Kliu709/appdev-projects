@@ -105,12 +105,14 @@ class StudyBlocksController < ApplicationController
     the_study_block.start_time = params.fetch("query_start_time")
     the_study_block.end_time = params.fetch("query_end_time")
     the_study_block.day_of_week = params.fetch("query_day_of_week")
-    the_study_block.user_id = params.fetch("query_user_id")
+    the_study_block.user_id = @current_user.id
     the_study_block.effort = params.fetch("query_effort")
+    the_study_block.description = params.fetch("query_description")
+    the_study_block.medium= params.fetch("query_medium")
 
     if the_study_block.valid?
       the_study_block.save
-      redirect_to("/study_blocks/#{the_study_block.id}", { :notice => "Study block updated successfully."} )
+      redirect_to("/study_blocks", { :notice => "Study block updated successfully."} )
     else
       redirect_to("/study_blocks/#{the_study_block.id}", { :alert => "Study block failed to update successfully." })
     end

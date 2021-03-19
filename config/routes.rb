@@ -35,9 +35,9 @@ Rails.application.routes.draw do
   post("/insert_study_block", { :controller => "study_blocks", :action => "create" })
           
   # READ
- get("/study_blocks", { :controller => "study_blocks", :action => "index" })
+  get("/study_blocks", { :controller => "study_blocks", :action => "index" })
   
- # get("/study_blocks/:path_id", { :controller => "study_blocks", :action => "show" })
+  get("/study_blocks/:path_id", { :controller => "study_blocks", :action => "show" })
   
   # UPDATE
   
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   
   # UPDATE
   
-  post("/modify_follower/:path_id", { :controller => "followers", :action => "update" })
+  #post("/modify_follower/:path_id", { :controller => "followers", :action => "update" })
   
   # DELETE
   get("/delete_follower/:path_id", { :controller => "followers", :action => "destroy" })

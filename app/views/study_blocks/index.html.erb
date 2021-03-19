@@ -34,6 +34,9 @@
         <th>
           Contact Me!
         </th>
+        <th>
+          Block Details
+        </th>
       </tr>
 
       <% @sunday_blocks.each do |a_study_block| %>
@@ -55,6 +58,11 @@
         </td>
         <td>
           <%= a_study_block.medium%>
+        </td>
+        <td>
+          <a href="/study_blocks/<%= a_study_block.id %>">
+            Show details
+          </a>
         </td>
         <td>
           <button type="button" class="btn btn-link">
@@ -86,6 +94,11 @@
           <%= a_study_block.medium%>
         </td>
         <td>
+          <a href="/study_blocks/<%= a_study_block.id %>">
+            Show details
+          </a>
+        </td>
+        <td>
           <button type="button" class="btn btn-link">
           <a href="/delete_study_block/<%= a_study_block.id %>">
             Delete
@@ -113,6 +126,11 @@
         </td>
         <td>
           <%= a_study_block.medium%>
+        </td>
+        <td>
+          <a href="/study_blocks/<%= a_study_block.id %>">
+            Show details
+          </a>
         </td>
         <td>
           <button type="button" class="btn btn-link">
@@ -144,6 +162,11 @@
           <%= a_study_block.medium%>
         </td>
         <td>
+          <a href="/study_blocks/<%= a_study_block.id %>">
+            Show details
+          </a>
+        </td>
+        <td>
           <button type="button" class="btn btn-link">
           <a href="/delete_study_block/<%= a_study_block.id %>">
             Delete
@@ -171,6 +194,11 @@
         </td>
         <td>
           <%= a_study_block.medium%>
+        </td>
+        <td>
+          <a href="/study_blocks/<%= a_study_block.id %>">
+            Show details
+          </a>
         </td>
         <td>
           <button type="button" class="btn btn-link">
@@ -202,6 +230,11 @@
           <%= a_study_block.medium%>
         </td>
         <td>
+          <a href="/study_blocks/<%= a_study_block.id %>">
+            Show details
+          </a>
+        </td>
+        <td>
          <button type="button" class="btn btn-link">
           <a href="/delete_study_block/<%= a_study_block.id %>">
             Delete
@@ -229,6 +262,11 @@
         </td>
         <td>
           <%= a_study_block.medium%>
+        </td>
+        <td>
+          <a href="/study_blocks/<%= a_study_block.id %>">
+            Show details
+          </a>
         </td>
         <td>
           <button type="button" class="btn btn-link">
@@ -316,8 +354,8 @@
       </div>
       <div>
         Note: * means the field is required 
-      <div>
-      <button type="button" class="btn btn-success">
+      </div>
+      <button class="btn btn-success">
         Create study block
       </button>
     </form>
