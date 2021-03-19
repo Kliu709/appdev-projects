@@ -5,15 +5,7 @@ task({ :sample_data => :environment}) do
   Follower.destroy_all
   StudyBlock.destroy_all
 
-=begin
-  3.times do 
-    user = User.new
-    user.username = Faker::Name.first_name 
-    user.email = Faker::Internet.email 
-    user.password = "password"
-    user.save 
-  end 
-=end 
+    
 
   user1 = User.new
   user1.username = "alice"
@@ -26,6 +18,12 @@ task({ :sample_data => :environment}) do
   user2.email = "bob@example.com"
   user2.password = "password"
   user2.save 
+
+  user = User.new
+  user.username = "charlie"
+  user.email = "charlie@example.com"
+  user.password = "password"
+  user.save  
   p "Added #{User.count} Users"
   #common 
 
@@ -67,7 +65,7 @@ task({ :sample_data => :environment}) do
 
   #make an array of hours 
   #end time = start + sample of hours 
-  7.times do 
+  14.times do 
     study_block = StudyBlock.new
     study_block.start_time = start_time.sample
     study_block.end_time = study_block.start_time + 3600*hours.sample
